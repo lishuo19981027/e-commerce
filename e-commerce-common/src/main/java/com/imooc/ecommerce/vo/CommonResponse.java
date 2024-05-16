@@ -7,14 +7,14 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
-/**
- * 通用响应对象
- * {
- *     "code": 200,
- *     "message": "success",
- *     "data": {}
- * }
- */
+    /**
+     * 通用响应对象
+     * {
+     *     "code": 200,
+     *     "message": "success",
+     *     "data": {}
+     * }
+     */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
