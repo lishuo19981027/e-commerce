@@ -23,7 +23,7 @@ public class lsnotifier extends AbstractEventNotifier {
     }
 
     /*
-    * 实现对事件的通知
+    * 实现对事件的通知aaa
     * */
     @Override
     protected Mono<Void> doNotify(InstanceEvent event, Instance instance) {
