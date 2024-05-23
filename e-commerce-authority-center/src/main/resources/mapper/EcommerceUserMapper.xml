@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.imooc.ecommerce.mapper.EcommerceUserMapper">
+    <resultMap id="BaseResultMap" type="com.imooc.ecommerce.entity.EcommerceUser">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="username" property="username" jdbcType="VARCHAR"/>
+        <result column="password" property="password" jdbcType="VARCHAR"/>
+        <result column="extra_info" property="extraInfo" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="VARCHAR"/>
+        <result column="update_time" property="updateTime" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <insert id="save" parameterType="com.imooc.ecommerce.entity.EcommerceUser" useGeneratedKeys="true" keyProperty="id">
+       insert into t_ecommerce_user (username, password, extra_info, create_time, update_time)
+       values (#{username}, #{password}, #{extraInfo}, now(), now())
+    </insert>
+
+    <select id="findByUsername" resultMap="BaseResultMap">
+        SELECT * FROM t_ecommerce_user WHERE username = #{username}
+    </select>
+
+    <select id="findByUsernameAndPassword" resultMap="BaseResultMap">
+        SELECT * FROM t_ecommerce_user WHERE username = #{username}
+                                       AND password = #{password}
+    </select>
+
+    <select id="findById" resultMap="BaseResultMap">
+        select * from t_ecommerce_user where id = #{id}
+    </select>
+
+</mapper>
