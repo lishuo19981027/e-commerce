@@ -13,7 +13,7 @@ import java.security.PublicKey;
 import java.security.spec.X509EncodedKeySpec;
 import java.util.Calendar;
 
-/*
+    /*
     * JWT Token 解析工具类
     * */
 public class TokenParseUtil {
@@ -48,6 +48,7 @@ public class TokenParseUtil {
 
         return Jwts.parser().setSigningKey(publicKey).parseClaimsJws(token);
     }
+
     /*
     * 根据本地存储的公钥获取到PublicKey对象
     * */

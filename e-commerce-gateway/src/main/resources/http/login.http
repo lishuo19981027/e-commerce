@@ -1,0 +1,17 @@
+###登录请求发到网关
+POST http://localhost:9002/imooc/e-commerce/login
+Content-Type: application/json
+
+{
+  "username": "shuoli@dev.com",
+  "password": "25d55ad283aa400af464c76d713c07ad"
+}
+
+###注册请求发到网关
+POST http://localhost:9002/imooc/e-commerce/register
+Content-Type: application/json
+
+{
+  "username": "shuoli@god1.com",
+  "password": "25d55ad283aa400af464c76d713c07ad"
+}
