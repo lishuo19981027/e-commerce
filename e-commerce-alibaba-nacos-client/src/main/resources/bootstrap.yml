@@ -26,6 +26,17 @@ spring:
         namespace: 1bc13fd5-843b-4ac0-aa55-695c25bc0ac6
         server-addr: 127.0.0.1:8848
 
+  kafka:
+    bootstrap-servers: 127.0.0.1:9092
+    producer:
+      retries: 3
+    consumer:
+      auto-offset-reset: latest
+  zipkin:
+    sender:
+      type: kafka # 默认是 web
+    base-url: http://localhost:9411/
+
 # 暴露端点
 management:
   endpoints:

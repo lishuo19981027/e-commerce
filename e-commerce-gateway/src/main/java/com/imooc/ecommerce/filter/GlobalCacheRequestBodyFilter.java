@@ -14,8 +14,10 @@ import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.Collections;
 
-    /*缓存请求body的全局过滤器
+
+/*缓存请求body的全局过滤器
     * Spring WebFlux
     * */
 @Slf4j
@@ -52,7 +54,6 @@ public class GlobalCacheRequestBodyFilter implements GlobalFilter , Ordered {
             return chain.filter(exchange.mutate().request(mutatedRequest).build());
         });
     }
-
     @Override
     public int getOrder() {
         return HIGHEST_PRECEDENCE + 1;

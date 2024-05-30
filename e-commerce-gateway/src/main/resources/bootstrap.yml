@@ -24,20 +24,20 @@ spring:
 #            predicates: # 断言, 路径相匹配的进行路由
 #              - Path=/user/{id}
 
-  # 这个地方独立配置, 是网关的数据, 代码 GatewayConfig.java 中读取被监听
-nacos:
-  gateway:
-    route:
-      config:
-        data_id: e-commerce-gateway-router
-        group: e-commerce
-
   kafka:
     bootstrap-servers: 127.0.0.1:9092
     producer:
       retries: 3
     consumer:
       auto-offset-reset: latest
+
+  sleuth:
+    sampler:
+      # ProbabilityBasedSampler 抽样策略
+      probability: 1.0  # 采样比例, 1.0 表示 100%, 默认是 0.1
+      # RateLimitingSampler 抽样策略, 设置了限速采集, spring.sleuth.sampler.probability 属性值无效
+      rate: 100  # 每秒间隔接受的 trace 量
+
   zipkin:
     sender:
       type: kafka # 默认是 web
@@ -45,6 +45,13 @@ nacos:
   main:
     allow-bean-definition-overriding: true  # 因为将来会引入很多依赖, 难免有重名的 bean
 
+  # 这个地方独立配置, 是网关的数据, 代码 GatewayConfig.java 中读取被监听
+nacos:
+  gateway:
+    route:
+      config:
+        data_id: e-commerce-gateway-router
+        group: e-commerce
 
 # 暴露端点
 management:
