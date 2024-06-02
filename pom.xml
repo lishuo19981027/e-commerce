@@ -8,18 +8,6 @@
     <artifactId>ecommerce-springcloud</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-<!--    <modules>-->
-<!--        <module>e-commerce-common</module>-->
-<!--        <module>e-commerce-mvc-config</module>-->
-<!--        <module>e-commerce-alibaba-nacos-client</module>-->
-<!--        <module>e-commerce-admin</module>-->
-<!--        <module>e-commerce-authority-center</module>-->
-<!--        <module>e-commerce-gateway</module>-->
-<!--        <module>e-commerce-service</module>-->
-<!--        <module>e-commerce-hystrix-dashboard</module>-->
-<!--        <module>e-commerce-stream-client</module>-->
-<!--    </modules>-->
-
     <packaging>pom</packaging>
     <modules>
         <module>e-commerce-common</module>
@@ -28,6 +16,7 @@
         <module>e-commerce-admin</module>
         <module>e-commerce-authority-center</module>
         <module>e-commerce-gateway</module>
+        <module>e-commerce-service</module>
     </modules>
 
     <parent>

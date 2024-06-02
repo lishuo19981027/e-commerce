@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.imooc.ecommerce.mapper.EcommerceBalanceMapper">
+
+    <resultMap id="BaseResultMap" type="com.imooc.ecommerce.entity.EcommerceBalance">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="user_id" property="userId" jdbcType="BIGINT"/>
+        <result column="balance" property="balance" jdbcType="DECIMAL"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <insert id="save" parameterType="com.imooc.ecommerce.entity.EcommerceBalance" useGeneratedKeys="true" keyProperty="id">
+        insert into t_ecommerce_balance (user_id, balance,create_time,update_time) values(#{userId}, #{balance},now(),now())
+    </insert>
+
+    <select id="findByUserId" resultMap="BaseResultMap">
+        select * from t_ecommerce_balance where user_id = #{userId}
+    </select>
+</mapper>

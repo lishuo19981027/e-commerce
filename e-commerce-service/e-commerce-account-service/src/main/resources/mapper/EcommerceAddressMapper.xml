@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.imooc.ecommerce.mapper.EcommerceAddressMapper">
+
+    <resultMap id="BaseResultMap" type="com.imooc.ecommerce.entity.EcommerceAddress">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="user_id" property="userId" jdbcType="BIGINT"/>
+        <result column="username" property="username" jdbcType="VARCHAR"/>
+        <result column="phone" property="phone" jdbcType="VARCHAR"/>
+        <result column="province" property="province" jdbcType="VARCHAR"/>
+        <result column="city" property="city" jdbcType="VARCHAR"/>
+        <result column="address_detail" property="addressDetail" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!-- 批量插入 -->
+    <insert id="saveAll" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO t_ecommerce_address (user_id, username, phone,province, city,address_detail,update_time,create_time)
+        VALUES
+        <foreach collection="addresses" item="item" index="index" separator=",">
+            (#{item.userId}, #{item.username}, #{item.phone},#{item.province}, #{item.city}, #{item.addressDetail},now(),now())
+        </foreach>
+    </insert>
+
+    <select id="findAllById" resultMap="BaseResultMap">
+        SELECT *
+        FROM t_ecommerce_address
+        WHERE id IN
+        <foreach collection="ids" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </select>
+
+    <select id="findById" resultMap="BaseResultMap">
+        select * from t_ecommerce_address where user_id = #{id}
+    </select>
+
+</mapper>
