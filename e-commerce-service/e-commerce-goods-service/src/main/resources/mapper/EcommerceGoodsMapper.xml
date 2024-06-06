@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.imooc.ecommerce.mapper.EcommerceGoodsMapper">
+
+    <resultMap id="BaseResultMap" type="com.imooc.ecommerce.entity.EcommerceGoods">
+        <id property="id" column="id" jdbcType="BIGINT"/>
+        <result property="goodsCategory" column="goods_category" jdbcType="VARCHAR"
+                typeHandler="com.imooc.ecommerce.typehandler.GoodsCategoryTypeHandler"/>
+        <result property="brandCategory" column="brand_category" jdbcType="VARCHAR"
+                typeHandler="com.imooc.ecommerce.typehandler.BrandCategoryTypeHandler"/>
+        <result property="goodsName" column="goods_name" jdbcType="VARCHAR"/>
+        <result property="goodsPic" column="goods_pic" jdbcType="VARCHAR"/>
+        <result property="goodsDescription" column="goods_description" jdbcType="VARCHAR"/>
+        <result property="goodsStatus" column="goods_status" jdbcType="INTEGER"
+                typeHandler="com.imooc.ecommerce.typehandler.GoodsStatusTypeHandler"/>
+        <result property="price" column="price" jdbcType="INTEGER"/>
+        <result property="supply" column="supply" jdbcType="BIGINT"/>
+        <result property="inventory" column="inventory" jdbcType="BIGINT"/>
+        <result property="goodsProperty" column="goods_property" jdbcType="VARCHAR"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <insert id="saveAll" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO t_ecommerce_goods (goods_category, brand_category, goods_name, goods_pic,goods_description, goods_status, price, supply,inventory, goods_property, create_time, update_time)
+        VALUES
+        <foreach collection="targetGoods" item="item" index="index" separator=",">
+            (
+            #{item.goodsCategory},
+            #{item.brandCategory},
+            #{item.goodsName},
+            #{item.goodsPic},
+            #{item.goodsDescription},
+            #{item.goodsStatus},
+            #{item.price},
+            #{item.supply},
+            #{item.inventory},
+            #{item.goodsProperty},
+            now(),
+            now()
+            )
+        </foreach>
+    </insert>
+
+
+    <select id="findAllById" resultMap="BaseResultMap">
+        SELECT *
+        FROM t_ecommerce_goods
+        WHERE id IN
+        <foreach collection="ids" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </select>
+
+</mapper>
