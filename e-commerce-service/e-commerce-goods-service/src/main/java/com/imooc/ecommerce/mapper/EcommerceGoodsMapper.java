@@ -41,7 +41,6 @@ public interface EcommerceGoodsMapper {
     List<EcommerceGoods> findAllById(@Param("ids") List<Long> ids);
 
 
-    @Select("SELECT * FROM t_ecommerce_goods ORDER BY id DESC")
     List<EcommerceGoods> findAll();
 
     @Update("UPDATE t_ecommerce_goods SET inventory = #{inventory} , update_time = now()"+

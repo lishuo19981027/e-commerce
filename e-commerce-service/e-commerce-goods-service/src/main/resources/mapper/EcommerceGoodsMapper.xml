@@ -53,4 +53,8 @@
         </foreach>
     </select>
 
+    <select id="findAll" resultMap="BaseResultMap">
+        SELECT * FROM t_ecommerce_goods ORDER BY id DESC
+    </select>
+
 </mapper>

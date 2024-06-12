@@ -64,6 +64,12 @@ mybatis:
   mapper-locations: classpath:mapper/*.xml
   type-handlers-package: com.imooc.ecommerce.typehandler
 
+pagehelper:
+  helperDialect: mysql
+  reasonable: false
+  supportMethodsArguments: true
+  pageSizeZero: false
+  params: count=countSql
 # 暴露端点
 management:
   endpoints:

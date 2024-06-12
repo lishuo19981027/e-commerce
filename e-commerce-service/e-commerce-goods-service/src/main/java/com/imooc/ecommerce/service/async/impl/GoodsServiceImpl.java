@@ -1,6 +1,7 @@
 package com.imooc.ecommerce.service.async.impl;
 
 import com.alibaba.fastjson.JSON;
+import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.imooc.ecommerce.common.TableId;
@@ -15,7 +16,6 @@ import com.imooc.ecommerce.vo.PageSimpleGoodsInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.IterableUtils;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -65,8 +65,7 @@ public class GoodsServiceImpl implements IGoodsService {
         }
 
         // 这里分页的规则: 1页10条数据, 按照 id 倒序排列
-        int pageSize = 10;
-        PageHelper.startPage(page,pageSize);
+        PageHelper.startPage(page, 10);
         List<EcommerceGoods> goodsList = ecommerceGoodsMapper.findAll();
         PageInfo<EcommerceGoods> ecommerceGoodsPageInfo =
                 new PageInfo<>(goodsList);
